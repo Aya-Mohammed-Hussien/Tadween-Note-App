@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { MdLockPerson } from "react-icons/md";
 import { HiOutlineMail } from "react-icons/hi";
 import { GiNotebook } from "react-icons/gi";
@@ -13,6 +13,8 @@ import { Helmet } from 'react-helmet';
 export default function Login() {
  const {loginUserFn} = useContext(authContext);
  const myNavigate = useNavigate();
+ const [errorApi, setErrorApi] = useState(null);
+
 
  const schema = z.object({
   email:z.string().email("Please enter a valid email address (e.g., name@example.com)."),
@@ -25,6 +27,7 @@ export default function Login() {
  const loginUser =async (values)=>{
   try {
     const {data}= await loginUserFn(values);
+    setErrorApi(null);
     Swal.fire({
         position: "center",
         icon: "success",
@@ -37,7 +40,8 @@ export default function Login() {
     }, 1000);
     console.log(data) ;
   } catch (error) {
-    console.log('error' , error)
+    setErrorApi(error.response.data.msg);
+    console.log('error' , error.response.data.msg)
   }
  }
 
@@ -60,6 +64,9 @@ export default function Login() {
                     <p className="text-gray-500 text-center text-sm mt-1 mb-6 dark:text-gray-400">
                         Sign in to access your notes.
                     </p>
+                    { errorApi ? 
+       <div className="p-2 mb-2 mt-1 text-sm font-medium text-red-800 rounded-lg bg-red-300 " role="alert">
+       {errorApi} </div> : ""}
                     <form onSubmit={handleSubmit(loginUser)}>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm mb-1 dark:text-gray-300">Email</label>

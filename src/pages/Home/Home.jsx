@@ -93,7 +93,7 @@ export default function Home() {
         </div>
         </> : 
         notes.length === 0 ? 
-        <div className="w-fit mx-auto flex justify-center items-center flex-col text-gray-900 dark:text-white text-3xl font-semibold text-center bg-gray-300 dark:bg-gray-800 dark:border-gray-700 rounded-lg border border-gray-300 py-5 px-6 mt-10">
+        <div className="w-fit mx-auto flex justify-center items-center flex-col text-gray-900 dark:text-white text-lg md:text-3xl font-semibold text-center bg-gray-300 dark:bg-gray-800 dark:border-gray-700 rounded-lg border border-gray-300 py-5 px-6 mt-10">
          <span>No notes yet! </span>
          <span>Start writing and make this space yours.</span>
         </div>

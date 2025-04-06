@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { GiNotebook } from 'react-icons/gi'
 import { HiOutlineCalendar, HiOutlineMail, HiOutlinePhone, HiOutlineUser } from 'react-icons/hi'
@@ -12,6 +12,7 @@ import { Helmet } from 'react-helmet'
 // import { Helmet } from 'react-helmet'
 
 export default function Register() {
+const [errorApi , setErrorApi] = useState(null);
  const {registerUserFn} = useContext(authContext);
  const myNavigation = useNavigate();
 
@@ -29,6 +30,7 @@ export default function Register() {
  const registerUser =async (values)=>{
   try {
     const {data}= await registerUserFn(values);
+    setErrorApi(null);
     console.log(data) ;
     Swal.fire({
       position: "center",
@@ -41,7 +43,8 @@ export default function Register() {
       myNavigation('/login')
     }, 1000);
   } catch (error) {
-    console.log('error' , error)
+    setErrorApi(error.response.data.msg);
+    console.log('error' , error.response.data.msg)
   }
  }
 
@@ -60,6 +63,9 @@ export default function Register() {
             </div>
           </div>
           <h2 className="text-2xl font-semibold text-center dark:text-white mb-5">Create an account</h2>
+          { errorApi ? 
+       <div className="p-2 mb-2 mt-1 text-sm font-medium text-red-800 rounded-lg bg-red-300 " role="alert">
+       {errorApi} </div> : ""}
           <form onSubmit={handleSubmit(registerUser)} >
             <div className="mb-4">
               <label className="block text-gray-700 text-sm mb-1 dark:text-gray-300">Name</label>
