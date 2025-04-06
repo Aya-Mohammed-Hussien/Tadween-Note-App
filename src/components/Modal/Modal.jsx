@@ -1,4 +1,4 @@
-import React, { useContext, useEffect }  from 'react';
+import React, { useContext, useEffect, useRef }  from 'react';
 import { IoIosClose } from "react-icons/io";
 import { modalContext } from '../../Context/ModalContext';
 import { useForm } from 'react-hook-form';
@@ -10,9 +10,21 @@ import Swal from 'sweetalert2';
 
 
 export default function Modal({getUserNotes , editingNote}) {
-  const {setShowModal} = useContext(modalContext);
+
+  const {setShowModal , showModal} = useContext(modalContext);
   const {addNoteFn , updateNoteFn} = useContext(noteContext);
- 
+  const modalRef = useRef(null);
+  useEffect(() => {
+    const handleCloseOutsideModal = (e) => {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+          setShowModal(false);
+      }
+    };
+    document.addEventListener("mousedown", handleCloseOutsideModal);
+    return () => {
+      document.removeEventListener("mousedown", handleCloseOutsideModal);
+    };
+  }, [showModal]);
 
   const schema = z.object({
     title : z.string().min(1,"Title is Required"),
@@ -59,7 +71,7 @@ useEffect(() => {
     return (
         <>
             <div id="authentication-modal" tabIndex="-1" aria-hidden="true" className="flex fixed z-50 bg-black/50 ml-12 md:ml-24 inset-0 items-center justify-center">
-                <div className="p-4 w-full max-w-xl max-h-full">
+                <div className="p-4 w-full max-w-xl max-h-full" ref={modalRef}>
                     <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg w-full max-w-xl overflow-hidden">
                         <div className="flex justify-between items-center px-6 py-4">
                             <h2 className="text-xl font-semibold text-black dark:text-white">
