@@ -58,7 +58,7 @@ useEffect(() => {
 
     return (
         <>
-            <div id="authentication-modal" tabIndex="-1" aria-hidden="true" className="flex fixed z-50 bg-black/50 ml-20 inset-0 items-center justify-center">
+            <div id="authentication-modal" tabIndex="-1" aria-hidden="true" className="flex fixed z-50 bg-black/50 ml-12 md:ml-24 inset-0 items-center justify-center">
                 <div className="p-4 w-full max-w-xl max-h-full">
                     <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg w-full max-w-xl overflow-hidden">
                         <div className="flex justify-between items-center px-6 py-4">

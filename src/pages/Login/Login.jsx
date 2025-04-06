@@ -8,6 +8,7 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 export default function Login() {
  const {loginUserFn} = useContext(authContext);
@@ -42,9 +43,10 @@ export default function Login() {
 
     return (
         <>
-        {/* <Helmet>
+        
+        <Helmet>
             <title>Login</title>
-        </Helmet> */}
+        </Helmet>
             <section className="flex items-center justify-center min-h-screen p-5 md:p-0">
                 <div className="w-full max-w-xl p-8 bg-white rounded-2xl shadow-lg dark:bg-gray-800 dark:border dark:border-gray-700">
                     <div className="flex justify-center mb-6">

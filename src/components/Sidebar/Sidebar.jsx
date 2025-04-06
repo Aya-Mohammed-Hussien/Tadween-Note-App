@@ -54,12 +54,12 @@ useEffect(() => {
 
   return (
     <>
-      <div className="bg-white w-24 dark:bg-gray-800 text-gray-900 dark:text-white h-screen fixed transition-all duration-300 border-r border-gray-300 dark:border-gray-700 bg-transparent ease-in-out flex flex-col justify-between">
+      <div className="bg-white w-12 md:w-24 dark:bg-gray-800 text-gray-900 dark:text-white h-screen fixed transition-all duration-300 border-r border-gray-300 dark:border-gray-700 bg-transparent ease-in-out flex flex-col justify-between">
         <div className="top-bar">
           <div className="border-b border-gray-300 dark:border-gray-700">
             <div className="text-center text-base font-semibold font-DynaPuff py-4 flex justify-center items-center gap-1">
-              <span>Tadween</span>
-            <FaPencilAlt className="text-sm" />
+              <span className="hidden md:block">Tadween</span>
+              <FaPencilAlt className="text-lg md:text-sm" />
             </div>
           </div>
           <nav className="mt-4 space-y-4 flex flex-col justify-around">
@@ -86,7 +86,7 @@ useEffect(() => {
             </> : <>
                {/* Register button */}
             <div className="relative group">
-               <Link to={"/register"} className="block py-3 px-4 w-full hover:bg-gray-300 dark:hover:bg-gray-700 text-center">
+               <Link to={"/register"} className="block py-3 md:px-4 w-full hover:bg-gray-300 dark:hover:bg-gray-700 text-center">
                <BsPersonFillAdd className='text-2xl mx-auto' />
                <span className="absolute z-50 left-full ml-2 top-1/2 -translate-y-1/2 bg-gray-300 dark:bg-gray-900 text-gray-900 dark:text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                  Register
@@ -95,7 +95,7 @@ useEffect(() => {
             </div>
             {/* Login button */}
             <div className="relative group">
-               <Link to={"/login"} className="block py-3 px-4 w-full hover:bg-gray-300 dark:hover:bg-gray-700 text-center">
+               <Link to={"/login"} className="block py-3 md:px-4 w-full hover:bg-gray-300 dark:hover:bg-gray-700 text-center">
                <RiLoginCircleLine className='text-2xl mx-auto' />
                <span className="absolute z-50 left-full ml-2 top-1/2 -translate-y-1/2 bg-gray-300 dark:bg-gray-900 text-gray-900 dark:text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                  Login
@@ -109,7 +109,7 @@ useEffect(() => {
           {token && <>
            {/* Logout button */}
           <div className="group relative">
-            <button onClick={()=>{logoutFn()}} className="block py-3 px-4 w-full mx-auto hover:bg-gray-300 dark:hover:bg-gray-700">
+            <button onClick={()=>{logoutFn()}} className="block py-3 md:px-4 w-full hover:bg-gray-300 dark:hover:bg-gray-700">
               <RiLogoutCircleLine className='text-2xl mx-auto' />
                 <span className="absolute z-50 left-full ml-2 top-1/2 -translate-y-1/2 bg-gray-300 dark:bg-gray-900 text-gray-900 dark:text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                     Logout
@@ -126,7 +126,6 @@ useEffect(() => {
           </div>
         </div>
       </div>
-   
     </>
   );
 }

@@ -6,7 +6,7 @@ export default function Layout() {
   return (
     <>
       <Sidebar />
-      <div className="bg-gray-200 dark:bg-gray-900 ml-20 min-h-screen">
+      <div className="bg-gray-200 dark:bg-gray-900 ml-12 md:ml-24 min-h-screen">
         <Outlet />
       </div>
     </>

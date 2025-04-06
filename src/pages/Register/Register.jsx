@@ -8,6 +8,7 @@ import { isValid, z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { authContext } from '../../Context/AuthContext'
 import Swal from 'sweetalert2'
+import { Helmet } from 'react-helmet'
 // import { Helmet } from 'react-helmet'
 
 export default function Register() {
@@ -17,7 +18,7 @@ export default function Register() {
  const schema = z.object({
   name:z.string().min(3 , "Name must be at least 3 characters").max(12 ,"Name must be at most 12 characters"),
   email:z.string().email("Please enter a valid email address (e.g., name@example.com)."),
-  password:z.string().regex(/^[a-zA-Z0-9]{6,10}$/ , "Your password doesn’t meet the requirements. Please try again."),
+  password:z.string().regex(/^[a-zA-Z0-9]{6,10}$/ , "Password must be 6-10 characters long and include only letters and numbers."),
   age:z.coerce.number().min(18 , "Age must be at least 18").max(80,"Age must be at most 80"),
   phone:z.string().regex(/^01[0125][0-9]{8}$/ , "Phone Number must be an egyption number")
  })
@@ -46,9 +47,9 @@ export default function Register() {
 
   return (
     <>
-    {/* <Helmet>
+    <Helmet>
         <title>Register</title>
-    </Helmet> */}
+    </Helmet>
       <section className="flex items-center justify-center min-h-screen p-5 md:p-0">
         <div className="w-full max-w-xl p-8 bg-white rounded-2xl shadow-lg dark:bg-gray-800 dark:border dark:border-gray-700">
           <div className="flex justify-center mb-6">
