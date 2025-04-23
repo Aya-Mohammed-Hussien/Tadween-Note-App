@@ -9,11 +9,12 @@ import Swal from 'sweetalert2';
 
 
 
-export default function Modal({getUserNotes , editingNote}) {
+export default function Modal({getUserNotes , editingNote , setNotes}) {
 
   const {setShowModal , showModal} = useContext(modalContext);
   const {addNoteFn , updateNoteFn} = useContext(noteContext);
   const modalRef = useRef(null);
+
   useEffect(() => {
     const handleCloseOutsideModal = (e) => {
       if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -35,11 +36,14 @@ export default function Modal({getUserNotes , editingNote}) {
   //  Function to handle addNote & updateNote
 const handleNote = async (values)=>{
     try {
+        let updatedNote;
         if(editingNote){
             const {data} = await updateNoteFn(editingNote._id , values);
-            console.log(data)
+            updatedNote = data.note;
+            console.log(data);
         } else{
             const {data} = await addNoteFn(values);
+            updatedNote = data.note;
             console.log(data);
         }
         Swal.fire({
@@ -51,9 +55,12 @@ const handleNote = async (values)=>{
           });
         setShowModal(false);
         setTimeout(() => {
-            getUserNotes();
+            if(editingNote){
+                setNotes((prevNotes)=>prevNotes.map((note)=>note._id===updatedNote._id ? updatedNote : note));
+            }else{
+                setNotes((prevNotes)=>[...prevNotes, updatedNote]);
+            }
         }, 900);
-       
     } catch (error) {
         console.log('error' , error);
         throw error;

@@ -57,7 +57,7 @@ export default function NoteContext({ children }) {
     }
   }
 
-  // Funcrion to delete user note 
+  // Funcrion to update user note 
   const updateNoteFn = async (noteId , values)=>{
     try {
       const data = await axios.put(

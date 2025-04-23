@@ -8,8 +8,7 @@ import { isValid, z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { authContext } from '../../Context/AuthContext'
 import Swal from 'sweetalert2'
-import { Helmet } from 'react-helmet'
-// import { Helmet } from 'react-helmet'
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 export default function Register() {
 const [errorApi , setErrorApi] = useState(null);
